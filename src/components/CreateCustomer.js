@@ -106,15 +106,15 @@ function CreateCustomer() {
         <p className="text-gray-500 text-sm sm:text-base">Fill in the details below to add a new customer to your system</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="max-w-4xl">
+      <form onSubmit={handleSubmit} className="max-w-5xl mx-auto">
         {/* Personal Information Section */}
-        <div className="mb-6 sm:mb-8">
-          <h3 className="text-slate-600 text-base sm:text-lg font-semibold mb-4 pb-2 border-b border-gray-200">
+        <div className="mb-8 sm:mb-10">
+          <h3 className="text-slate-600 text-base sm:text-lg font-semibold mb-6 pb-2 border-b border-gray-200">
             Personal Information
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             <div>
-              <label className="block mb-2 text-sm sm:text-base font-medium text-gray-700">
+              <label className="block mb-3 text-sm sm:text-base font-medium text-gray-700">
                 First Name <span className="text-red-500">*</span>
               </label>
               <input
@@ -122,7 +122,7 @@ function CreateCustomer() {
                 name="first_name"
                 value={formData.first_name}
                 onChange={handleChange}
-                className={`w-full p-3 border rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                className={`w-full p-4 border rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
                   errors.first_name ? 'border-red-300 bg-red-50' : 'border-gray-300 bg-white'
                 }`}
                 placeholder="Enter first name"
@@ -138,7 +138,7 @@ function CreateCustomer() {
             </div>
 
             <div>
-              <label className="block mb-2 text-sm sm:text-base font-medium text-gray-700">
+              <label className="block mb-3 text-sm sm:text-base font-medium text-gray-700">
                 Last Name <span className="text-red-500">*</span>
               </label>
               <input
@@ -146,7 +146,7 @@ function CreateCustomer() {
                 name="last_name"
                 value={formData.last_name}
                 onChange={handleChange}
-                className={`w-full p-3 border rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                className={`w-full p-4 border rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
                   errors.last_name ? 'border-red-300 bg-red-50' : 'border-gray-300 bg-white'
                 }`}
                 placeholder="Enter last name"
@@ -162,7 +162,7 @@ function CreateCustomer() {
             </div>
 
             <div className="md:col-span-2">
-              <label className="block mb-2 text-sm sm:text-base font-medium text-gray-700">
+              <label className="block mb-3 text-sm sm:text-base font-medium text-gray-700">
                 Phone Number <span className="text-red-500">*</span>
               </label>
               <input
@@ -170,7 +170,7 @@ function CreateCustomer() {
                 name="phone_number"
                 value={formData.phone_number}
                 onChange={handleChange}
-                className={`w-full p-3 border rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                className={`w-full p-4 border rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
                   errors.phone_number ? 'border-red-300 bg-red-50' : 'border-gray-300 bg-white'
                 }`}
                 placeholder="Enter phone number (min. 10 digits)"
@@ -188,13 +188,13 @@ function CreateCustomer() {
         </div>
 
         {/* Address Information Section */}
-        <div className="mb-6 sm:mb-8">
-          <h3 className="text-slate-600 text-base sm:text-lg font-semibold mb-4 pb-2 border-b border-gray-200">
+        <div className="mb-8 sm:mb-10">
+          <h3 className="text-slate-600 text-base sm:text-lg font-semibold mb-6 pb-2 border-b border-gray-200">
             Address Information
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             <div>
-              <label className="block mb-2 text-sm sm:text-base font-medium text-gray-700">
+              <label className="block mb-3 text-sm sm:text-base font-medium text-gray-700">
                 City <span className="text-red-500">*</span>
               </label>
               <input
@@ -202,7 +202,7 @@ function CreateCustomer() {
                 name="city"
                 value={formData.city}
                 onChange={handleChange}
-                className={`w-full p-3 border rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                className={`w-full p-4 border rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
                   errors.city ? 'border-red-300 bg-red-50' : 'border-gray-300 bg-white'
                 }`}
                 placeholder="Enter city"
@@ -218,7 +218,7 @@ function CreateCustomer() {
             </div>
 
             <div>
-              <label className="block mb-2 text-sm sm:text-base font-medium text-gray-700">
+              <label className="block mb-3 text-sm sm:text-base font-medium text-gray-700">
                 State <span className="text-red-500">*</span>
               </label>
               <input
@@ -226,7 +226,7 @@ function CreateCustomer() {
                 name="state"
                 value={formData.state}
                 onChange={handleChange}
-                className={`w-full p-3 border rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                className={`w-full p-4 border rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
                   errors.state ? 'border-red-300 bg-red-50' : 'border-gray-300 bg-white'
                 }`}
                 placeholder="Enter state"
@@ -242,7 +242,7 @@ function CreateCustomer() {
             </div>
 
             <div>
-              <label className="block mb-2 text-sm sm:text-base font-medium text-gray-700">
+              <label className="block mb-3 text-sm sm:text-base font-medium text-gray-700">
                 Pin Code <span className="text-red-500">*</span>
               </label>
               <input
@@ -250,7 +250,7 @@ function CreateCustomer() {
                 name="pin_code"
                 value={formData.pin_code}
                 onChange={handleChange}
-                className={`w-full p-3 border rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                className={`w-full p-4 border rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
                   errors.pin_code ? 'border-red-300 bg-red-50' : 'border-gray-300 bg-white'
                 }`}
                 placeholder="Enter pin code"
@@ -268,7 +268,7 @@ function CreateCustomer() {
         </div>
 
         {/* Submit Button */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 border-t border-gray-200">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 pt-6 border-t border-gray-200">
           <button
             type="submit"
             className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition-all transform hover:scale-105 text-sm sm:text-base flex items-center justify-center gap-2"

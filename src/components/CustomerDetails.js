@@ -231,54 +231,54 @@ function CustomerDetails() {
             </button>
           </div>
         ) : (
-          <form onSubmit={handleCustomerUpdate} className="max-w-4xl">
+          <form onSubmit={handleCustomerUpdate} className="max-w-5xl mx-auto">
             <div className="mb-6">
-              <h3 className="text-slate-600 text-base sm:text-lg font-semibold mb-4 pb-2 border-b border-gray-200">
+              <h3 className="text-slate-600 text-base sm:text-lg font-semibold mb-6 pb-2 border-b border-gray-200">
                 Edit Customer Information
               </h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-8">
               <div>
-                <label className="block mb-2 text-sm sm:text-base font-medium text-gray-700">
+                <label className="block mb-3 text-sm sm:text-base font-medium text-gray-700">
                   First Name <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   value={customerForm.first_name}
                   onChange={(e) => setCustomerForm({ ...customerForm, first_name: e.target.value })}
-                  className="w-full p-3 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                  className="w-full p-4 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                   placeholder="Enter first name"
                 />
               </div>
 
               <div>
-                <label className="block mb-2 text-sm sm:text-base font-medium text-gray-700">
+                <label className="block mb-3 text-sm sm:text-base font-medium text-gray-700">
                   Last Name <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   value={customerForm.last_name}
                   onChange={(e) => setCustomerForm({ ...customerForm, last_name: e.target.value })}
-                  className="w-full p-3 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                  className="w-full p-4 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                   placeholder="Enter last name"
                 />
               </div>
 
               <div className="md:col-span-2">
-                <label className="block mb-2 text-sm sm:text-base font-medium text-gray-700">
+                <label className="block mb-3 text-sm sm:text-base font-medium text-gray-700">
                   Phone Number <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="tel"
                   value={customerForm.phone_number}
                   onChange={(e) => setCustomerForm({ ...customerForm, phone_number: e.target.value })}
-                  className="w-full p-3 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                  className="w-full p-4 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                   placeholder="Enter phone number (min. 10 digits)"
                 />
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 border-t border-gray-200">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 pt-6 border-t border-gray-200">
               <button
                 type="submit"
                 className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition-all transform hover:scale-105 text-sm sm:text-base flex items-center justify-center gap-2"
@@ -345,65 +345,65 @@ function CustomerDetails() {
         </div>
 
         {showAddAddress && (
-          <form onSubmit={handleAddressSubmit} className="mb-5 p-5 sm:p-6 bg-gray-50 rounded-lg border border-gray-200">
-            <h3 className="mb-5 text-base sm:text-lg font-semibold text-slate-700 pb-2 border-b border-gray-300">
+          <form onSubmit={handleAddressSubmit} className="mb-5 p-5 sm:p-6 bg-gray-50 rounded-lg border border-gray-200 max-w-5xl mx-auto">
+            <h3 className="mb-6 text-base sm:text-lg font-semibold text-slate-700 pb-2 border-b border-gray-300">
               {editingAddress ? 'Edit Address' : 'Add New Address'}
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-8">
               <div className="md:col-span-2">
-                <label className="block mb-2 text-sm sm:text-base font-medium text-gray-700">
+                <label className="block mb-3 text-sm sm:text-base font-medium text-gray-700">
                   Address Line <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   value={addressForm.address_line}
                   onChange={(e) => setAddressForm({ ...addressForm, address_line: e.target.value })}
-                  className="w-full p-3 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                  className="w-full p-4 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                   placeholder="Enter address line"
                 />
               </div>
 
               <div>
-                <label className="block mb-2 text-sm sm:text-base font-medium text-gray-700">
+                <label className="block mb-3 text-sm sm:text-base font-medium text-gray-700">
                   City <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   value={addressForm.city}
                   onChange={(e) => setAddressForm({ ...addressForm, city: e.target.value })}
-                  className="w-full p-3 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                  className="w-full p-4 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                   placeholder="Enter city"
                 />
               </div>
 
               <div>
-                <label className="block mb-2 text-sm sm:text-base font-medium text-gray-700">
+                <label className="block mb-3 text-sm sm:text-base font-medium text-gray-700">
                   State <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   value={addressForm.state}
                   onChange={(e) => setAddressForm({ ...addressForm, state: e.target.value })}
-                  className="w-full p-3 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                  className="w-full p-4 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                   placeholder="Enter state"
                 />
               </div>
 
               <div>
-                <label className="block mb-2 text-sm sm:text-base font-medium text-gray-700">
+                <label className="block mb-3 text-sm sm:text-base font-medium text-gray-700">
                   Pin Code <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   value={addressForm.pin_code}
                   onChange={(e) => setAddressForm({ ...addressForm, pin_code: e.target.value })}
-                  className="w-full p-3 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                  className="w-full p-4 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                   placeholder="Enter pin code"
                 />
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 border-t border-gray-300">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 pt-6 border-t border-gray-300">
               <button
                 type="submit"
                 className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition-all transform hover:scale-105 text-sm sm:text-base flex items-center justify-center gap-2"
