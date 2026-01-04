@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import API_URL from '../config/api';
 
-const API_URL = 'http://localhost:5001/api';
+
 
 function CreateCustomer() {
   const [formData, setFormData] = useState({
@@ -13,7 +15,6 @@ function CreateCustomer() {
     pin_code: ''
   });
   const [errors, setErrors] = useState({});
-  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -77,7 +78,7 @@ function CreateCustomer() {
       const data = await response.json();
 
       if (response.ok) {
-        setSuccessMessage('Customer created successfully!');
+        toast.success('Customer created successfully!');
         setFormData({
           first_name: '',
           last_name: '',
@@ -88,23 +89,19 @@ function CreateCustomer() {
         });
         setTimeout(() => {
           navigate('/');
-        }, 2000);
+        }, 1500);
       } else {
-        alert(data.error || 'Error creating customer');
+        toast.error(data.error || 'Error creating customer');
       }
     } catch (error) {
       console.error('Error creating customer:', error);
-      alert('Error creating customer');
+      toast.error('Error creating customer. Please try again.');
     }
   };
 
   return (
     <div className="card">
       <h2>Create New Customer</h2>
-      
-      {successMessage && (
-        <div className="success-message">{successMessage}</div>
-      )}
 
       <form onSubmit={handleSubmit}>
         <div className="form-group">

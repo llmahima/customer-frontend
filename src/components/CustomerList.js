@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const API_URL = 'http://localhost:5001/api';
+import toast from 'react-hot-toast';
+import API_URL from '../config/api';
 
 function CustomerList() {
   const [customers, setCustomers] = useState([]);
@@ -83,13 +83,15 @@ function CustomerList() {
       });
 
       if (response.ok) {
+        toast.success('Customer deleted successfully!');
         fetchCustomers();
       } else {
-        alert('Error deleting customer');
+        const data = await response.json();
+        toast.error(data.error || 'Error deleting customer');
       }
     } catch (error) {
       console.error('Error deleting customer:', error);
-      alert('Error deleting customer');
+      toast.error('Error deleting customer. Please try again.');
     }
   };
 

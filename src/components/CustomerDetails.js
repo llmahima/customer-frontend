@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
-const API_URL = 'http://localhost:5001/api';
+import toast from 'react-hot-toast';
+import API_URL from '../config/api';
 
 function CustomerDetails() {
   const { id } = useParams();
@@ -12,7 +12,6 @@ function CustomerDetails() {
   const [editingCustomer, setEditingCustomer] = useState(false);
   const [editingAddress, setEditingAddress] = useState(null);
   const [showAddAddress, setShowAddAddress] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
 
   const [customerForm, setCustomerForm] = useState({
     first_name: '',
@@ -36,14 +35,19 @@ function CustomerDetails() {
     try {
       const response = await fetch(`${API_URL}/customers/${id}`);
       const data = await response.json();
-      setCustomer(data);
-      setCustomerForm({
-        first_name: data.first_name,
-        last_name: data.last_name,
-        phone_number: data.phone_number
-      });
+      if (response.ok) {
+        setCustomer(data);
+        setCustomerForm({
+          first_name: data.first_name,
+          last_name: data.last_name,
+          phone_number: data.phone_number
+        });
+      } else {
+        toast.error(data.error || 'Error loading customer details');
+      }
     } catch (error) {
       console.error('Error fetching customer:', error);
+      toast.error('Error loading customer details. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -53,9 +57,12 @@ function CustomerDetails() {
     try {
       const response = await fetch(`${API_URL}/customers/${id}/addresses`);
       const data = await response.json();
-      setAddresses(data);
+      if (response.ok) {
+        setAddresses(data);
+      }
     } catch (error) {
       console.error('Error fetching addresses:', error);
+      toast.error('Error loading addresses');
     }
   };
 
@@ -63,12 +70,12 @@ function CustomerDetails() {
     e.preventDefault();
 
     if (!customerForm.first_name || !customerForm.last_name || !customerForm.phone_number) {
-      alert('All fields are required');
+      toast.error('All fields are required');
       return;
     }
 
     if (customerForm.phone_number.length < 10) {
-      alert('Phone number must be at least 10 digits');
+      toast.error('Phone number must be at least 10 digits');
       return;
     }
 
@@ -84,16 +91,15 @@ function CustomerDetails() {
       const data = await response.json();
 
       if (response.ok) {
-        setSuccessMessage('Customer updated successfully!');
+        toast.success('Customer updated successfully!');
         setEditingCustomer(false);
         fetchCustomerDetails();
-        setTimeout(() => setSuccessMessage(''), 3000);
       } else {
-        alert(data.error || 'Error updating customer');
+        toast.error(data.error || 'Error updating customer');
       }
     } catch (error) {
       console.error('Error updating customer:', error);
-      alert('Error updating customer');
+      toast.error('Error updating customer. Please try again.');
     }
   };
 
@@ -101,7 +107,7 @@ function CustomerDetails() {
     e.preventDefault();
 
     if (!addressForm.address_line || !addressForm.city || !addressForm.state || !addressForm.pin_code) {
-      alert('All address fields are required');
+      toast.error('All address fields are required');
       return;
     }
 
@@ -122,18 +128,17 @@ function CustomerDetails() {
       const data = await response.json();
 
       if (response.ok) {
-        setSuccessMessage(editingAddress ? 'Address updated successfully!' : 'Address added successfully!');
+        toast.success(editingAddress ? 'Address updated successfully!' : 'Address added successfully!');
         setShowAddAddress(false);
         setEditingAddress(null);
         setAddressForm({ address_line: '', city: '', state: '', pin_code: '' });
         fetchAddresses();
-        setTimeout(() => setSuccessMessage(''), 3000);
       } else {
-        alert(data.error || 'Error saving address');
+        toast.error(data.error || 'Error saving address');
       }
     } catch (error) {
       console.error('Error saving address:', error);
-      alert('Error saving address');
+      toast.error('Error saving address. Please try again.');
     }
   };
 
@@ -159,13 +164,15 @@ function CustomerDetails() {
       });
 
       if (response.ok) {
+        toast.success('Address deleted successfully!');
         fetchAddresses();
       } else {
-        alert('Error deleting address');
+        const data = await response.json();
+        toast.error(data.error || 'Error deleting address');
       }
     } catch (error) {
       console.error('Error deleting address:', error);
-      alert('Error deleting address');
+      toast.error('Error deleting address. Please try again.');
     }
   };
 
@@ -179,10 +186,6 @@ function CustomerDetails() {
 
   return (
     <div>
-      {successMessage && (
-        <div className="success-message">{successMessage}</div>
-      )}
-
       <div className="card">
         <h2>Customer Details</h2>
         
