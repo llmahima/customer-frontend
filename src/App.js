@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Navbar from './components/Navbar';
+import Home from './components/Home';
 import CustomerList from './components/CustomerList';
 import CreateCustomer from './components/CreateCustomer';
 import CustomerDetails from './components/CustomerDetails';
@@ -37,9 +38,10 @@ function App() {
         />
         <div className="max-w-6xl mx-auto px-5 py-5">
           <Routes>
-            <Route path="/" element={<CustomerList />} />
-            <Route path="/create" element={<CreateCustomer />} />
-            <Route path="/customer/:id" element={<CustomerDetails />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/customers/all" element={<CustomerList />} />
+            <Route path="/customers/new" element={<CreateCustomer />} />
+            <Route path="/customers/:id" element={<CustomerDetails />} />
           </Routes>
         </div>
       </div>

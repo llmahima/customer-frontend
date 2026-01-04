@@ -153,7 +153,7 @@ function CustomerList() {
                 <div className="flex gap-2.5">
                   <button
                     className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-blue-500 text-white hover:bg-blue-600"
-                    onClick={() => navigate(`/customer/${customer.id}`)}
+                    onClick={() => navigate(`/customers/${customer.id}`)}
                   >
                     View Details
                   </button>

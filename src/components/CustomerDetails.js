@@ -375,7 +375,7 @@ function CustomerDetails() {
         )}
       </div>
 
-      <button className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-gray-400 text-white hover:bg-gray-500" onClick={() => navigate('/')}>
+      <button className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-gray-400 text-white hover:bg-gray-500" onClick={() => navigate('/customers/all')}>
         Back to Customer List
       </button>
     </div>

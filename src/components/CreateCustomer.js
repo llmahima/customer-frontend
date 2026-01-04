@@ -88,7 +88,7 @@ function CreateCustomer() {
           pin_code: ''
         });
         setTimeout(() => {
-          navigate('/');
+          navigate('/customers/all');
         }, 1500);
       } else {
         toast.error(data.error || 'Error creating customer');

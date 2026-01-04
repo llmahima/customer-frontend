@@ -23,12 +23,22 @@ function Navbar() {
                   : 'bg-slate-600 text-white hover:bg-slate-500'
               }`}
             >
+              Home
+            </Link>
+            <Link
+              to="/customers/all"
+              className={`px-4 py-2 rounded transition-colors ${
+                location.pathname === '/customers/all'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-slate-600 text-white hover:bg-slate-500'
+              }`}
+            >
               Customer List
             </Link>
             <Link
-              to="/create"
+              to="/customers/new"
               className={`px-4 py-2 rounded transition-colors ${
-                location.pathname === '/create'
+                location.pathname === '/customers/new'
                   ? 'bg-blue-600 text-white'
                   : 'bg-slate-600 text-white hover:bg-slate-500'
               }`}
