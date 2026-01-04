@@ -101,16 +101,16 @@ function CustomerList() {
 
   return (
     <div>
-      <div className="bg-white p-5 rounded-lg shadow mb-5">
-        <h2 className="mb-5 text-slate-700 text-xl font-semibold">Search & Filter Customers</h2>
-        <div className="flex gap-4 mb-5 flex-wrap">
+      <div className="bg-white p-4 sm:p-5 rounded-lg shadow mb-5">
+        <h2 className="mb-4 sm:mb-5 text-slate-700 text-lg sm:text-xl font-semibold">Search & Filter Customers</h2>
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-5">
           <input
             type="text"
             name="city"
             placeholder="Search by City"
             value={filters.city}
             onChange={handleFilterChange}
-            className="flex-1 min-w-[200px] p-2.5 border border-gray-300 rounded"
+            className="flex-1 w-full sm:min-w-[200px] p-2.5 border border-gray-300 rounded text-sm"
           />
           <input
             type="text"
@@ -118,7 +118,7 @@ function CustomerList() {
             placeholder="Search by State"
             value={filters.state}
             onChange={handleFilterChange}
-            className="flex-1 min-w-[200px] p-2.5 border border-gray-300 rounded"
+            className="flex-1 w-full sm:min-w-[200px] p-2.5 border border-gray-300 rounded text-sm"
           />
           <input
             type="text"
@@ -126,10 +126,10 @@ function CustomerList() {
             placeholder="Search by Pin Code"
             value={filters.pin_code}
             onChange={handleFilterChange}
-            className="flex-1 min-w-[200px] p-2.5 border border-gray-300 rounded"
+            className="flex-1 w-full sm:min-w-[200px] p-2.5 border border-gray-300 rounded text-sm"
           />
           <button 
-            className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-gray-400 text-white hover:bg-gray-500" 
+            className="w-full sm:w-auto px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-gray-400 text-white hover:bg-gray-500 whitespace-nowrap" 
             onClick={clearFilters}
           >
             Clear Filters
@@ -137,28 +137,28 @@ function CustomerList() {
         </div>
       </div>
 
-      <div className="bg-white p-5 rounded-lg shadow mb-5">
-        <h2 className="mb-5 text-slate-700 text-xl font-semibold">Customer List ({filteredCustomers.length})</h2>
+      <div className="bg-white p-4 sm:p-5 rounded-lg shadow mb-5">
+        <h2 className="mb-4 sm:mb-5 text-slate-700 text-lg sm:text-xl font-semibold">Customer List ({filteredCustomers.length})</h2>
         {filteredCustomers.length === 0 ? (
-          <p>No customers found.</p>
+          <p className="text-gray-600">No customers found.</p>
         ) : (
           <div className="grid gap-4">
             {filteredCustomers.map(customer => (
-              <div key={customer.id} className="bg-white p-5 rounded-lg shadow flex justify-between items-center">
-                <div>
-                  <h3 className="text-slate-700 mb-2 text-lg font-semibold">{customer.first_name} {customer.last_name}</h3>
-                  <p className="text-gray-500 my-1">Phone: {customer.phone_number}</p>
-                  <p className="text-gray-500 my-1">City: {customer.city}, State: {customer.state}, Pin: {customer.pin_code}</p>
+              <div key={customer.id} className="bg-white p-4 sm:p-5 rounded-lg shadow flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+                <div className="flex-1">
+                  <h3 className="text-slate-700 mb-2 text-base sm:text-lg font-semibold">{customer.first_name} {customer.last_name}</h3>
+                  <p className="text-gray-500 my-1 text-sm sm:text-base">Phone: {customer.phone_number}</p>
+                  <p className="text-gray-500 my-1 text-sm sm:text-base">City: {customer.city}, State: {customer.state}, Pin: {customer.pin_code}</p>
                 </div>
-                <div className="flex gap-2.5">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-2.5 w-full sm:w-auto">
                   <button
-                    className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-blue-500 text-white hover:bg-blue-600"
+                    className="w-full sm:w-auto px-4 sm:px-5 py-2 sm:py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-blue-500 text-white hover:bg-blue-600"
                     onClick={() => navigate(`/customers/${customer.id}`)}
                   >
                     View Details
                   </button>
                   <button
-                    className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-red-500 text-white hover:bg-red-600"
+                    className="w-full sm:w-auto px-4 sm:px-5 py-2 sm:py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-red-500 text-white hover:bg-red-600"
                     onClick={() => handleDelete(customer.id)}
                   >
                     Delete

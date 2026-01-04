@@ -100,12 +100,12 @@ function CreateCustomer() {
   };
 
   return (
-    <div className="bg-white p-5 rounded-lg shadow mb-5">
-      <h2 className="mb-5 text-slate-700 text-xl font-semibold">Create New Customer</h2>
+    <div className="bg-white p-4 sm:p-5 rounded-lg shadow mb-5">
+      <h2 className="mb-4 sm:mb-5 text-slate-700 text-lg sm:text-xl font-semibold">Create New Customer</h2>
 
-      <form onSubmit={handleSubmit}>
-        <div className="mb-5">
-          <label className="block mb-1 font-medium text-gray-700">First Name *</label>
+      <form onSubmit={handleSubmit} className="max-w-2xl">
+        <div className="mb-4 sm:mb-5">
+          <label className="block mb-1 text-sm sm:text-base font-medium text-gray-700">First Name *</label>
           <input
             type="text"
             name="first_name"
@@ -116,8 +116,8 @@ function CreateCustomer() {
           {errors.first_name && <div className="text-red-500 text-xs mt-1">{errors.first_name}</div>}
         </div>
 
-        <div className="mb-5">
-          <label className="block mb-1 font-medium text-gray-700">Last Name *</label>
+        <div className="mb-4 sm:mb-5">
+          <label className="block mb-1 text-sm sm:text-base font-medium text-gray-700">Last Name *</label>
           <input
             type="text"
             name="last_name"
@@ -128,8 +128,8 @@ function CreateCustomer() {
           {errors.last_name && <div className="text-red-500 text-xs mt-1">{errors.last_name}</div>}
         </div>
 
-        <div className="mb-5">
-          <label className="block mb-1 font-medium text-gray-700">Phone Number *</label>
+        <div className="mb-4 sm:mb-5">
+          <label className="block mb-1 text-sm sm:text-base font-medium text-gray-700">Phone Number *</label>
           <input
             type="tel"
             name="phone_number"
@@ -140,8 +140,8 @@ function CreateCustomer() {
           {errors.phone_number && <div className="text-red-500 text-xs mt-1">{errors.phone_number}</div>}
         </div>
 
-        <div className="mb-5">
-          <label className="block mb-1 font-medium text-gray-700">City *</label>
+        <div className="mb-4 sm:mb-5">
+          <label className="block mb-1 text-sm sm:text-base font-medium text-gray-700">City *</label>
           <input
             type="text"
             name="city"
@@ -152,8 +152,8 @@ function CreateCustomer() {
           {errors.city && <div className="text-red-500 text-xs mt-1">{errors.city}</div>}
         </div>
 
-        <div className="mb-5">
-          <label className="block mb-1 font-medium text-gray-700">State *</label>
+        <div className="mb-4 sm:mb-5">
+          <label className="block mb-1 text-sm sm:text-base font-medium text-gray-700">State *</label>
           <input
             type="text"
             name="state"
@@ -164,8 +164,8 @@ function CreateCustomer() {
           {errors.state && <div className="text-red-500 text-xs mt-1">{errors.state}</div>}
         </div>
 
-        <div className="mb-5">
-          <label className="block mb-1 font-medium text-gray-700">Pin Code *</label>
+        <div className="mb-4 sm:mb-5">
+          <label className="block mb-1 text-sm sm:text-base font-medium text-gray-700">Pin Code *</label>
           <input
             type="text"
             name="pin_code"
@@ -176,7 +176,7 @@ function CreateCustomer() {
           {errors.pin_code && <div className="text-red-500 text-xs mt-1">{errors.pin_code}</div>}
         </div>
 
-        <button type="submit" className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-green-500 text-white hover:bg-green-600">
+        <button type="submit" className="w-full sm:w-auto px-6 sm:px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-green-500 text-white hover:bg-green-600">
           Create Customer
         </button>
       </form>

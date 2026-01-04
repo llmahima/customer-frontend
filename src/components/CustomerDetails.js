@@ -186,28 +186,30 @@ function CustomerDetails() {
 
   return (
     <div>
-      <div className="bg-white p-5 rounded-lg shadow mb-5">
-        <h2 className="mb-5 text-slate-700 text-xl font-semibold">Customer Details</h2>
+      <div className="bg-white p-4 sm:p-5 rounded-lg shadow mb-5">
+        <h2 className="mb-4 sm:mb-5 text-slate-700 text-lg sm:text-xl font-semibold">Customer Details</h2>
         
         {!editingCustomer ? (
           <div>
-            <p className="my-2"><strong>First Name:</strong> {customer.first_name}</p>
-            <p className="my-2"><strong>Last Name:</strong> {customer.last_name}</p>
-            <p className="my-2"><strong>Phone Number:</strong> {customer.phone_number}</p>
-            <p className="my-2"><strong>City:</strong> {customer.city}</p>
-            <p className="my-2"><strong>State:</strong> {customer.state}</p>
-            <p className="my-2"><strong>Pin Code:</strong> {customer.pin_code}</p>
+            <div className="space-y-2 sm:space-y-3">
+              <p className="text-sm sm:text-base"><strong>First Name:</strong> {customer.first_name}</p>
+              <p className="text-sm sm:text-base"><strong>Last Name:</strong> {customer.last_name}</p>
+              <p className="text-sm sm:text-base"><strong>Phone Number:</strong> {customer.phone_number}</p>
+              <p className="text-sm sm:text-base"><strong>City:</strong> {customer.city}</p>
+              <p className="text-sm sm:text-base"><strong>State:</strong> {customer.state}</p>
+              <p className="text-sm sm:text-base"><strong>Pin Code:</strong> {customer.pin_code}</p>
+            </div>
             <button
-              className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-blue-500 text-white hover:bg-blue-600 mt-4"
+              className="w-full sm:w-auto px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-blue-500 text-white hover:bg-blue-600 mt-4"
               onClick={() => setEditingCustomer(true)}
             >
               Edit Customer
             </button>
           </div>
         ) : (
-          <form onSubmit={handleCustomerUpdate}>
-            <div className="mb-5">
-              <label className="block mb-1 font-medium text-gray-700">First Name *</label>
+          <form onSubmit={handleCustomerUpdate} className="max-w-2xl">
+            <div className="mb-4 sm:mb-5">
+              <label className="block mb-1 text-sm sm:text-base font-medium text-gray-700">First Name *</label>
               <input
                 type="text"
                 value={customerForm.first_name}
@@ -216,8 +218,8 @@ function CustomerDetails() {
               />
             </div>
 
-            <div className="mb-5">
-              <label className="block mb-1 font-medium text-gray-700">Last Name *</label>
+            <div className="mb-4 sm:mb-5">
+              <label className="block mb-1 text-sm sm:text-base font-medium text-gray-700">Last Name *</label>
               <input
                 type="text"
                 value={customerForm.last_name}
@@ -226,8 +228,8 @@ function CustomerDetails() {
               />
             </div>
 
-            <div className="mb-5">
-              <label className="block mb-1 font-medium text-gray-700">Phone Number *</label>
+            <div className="mb-4 sm:mb-5">
+              <label className="block mb-1 text-sm sm:text-base font-medium text-gray-700">Phone Number *</label>
               <input
                 type="tel"
                 value={customerForm.phone_number}
@@ -236,44 +238,46 @@ function CustomerDetails() {
               />
             </div>
 
-            <button type="submit" className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-green-500 text-white hover:bg-green-600">
-              Update Customer
-            </button>
-            <button
-              type="button"
-              className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-gray-400 text-white hover:bg-gray-500 ml-2.5"
-              onClick={() => {
-                setEditingCustomer(false);
-                setCustomerForm({
-                  first_name: customer.first_name,
-                  last_name: customer.last_name,
-                  phone_number: customer.phone_number
-                });
-              }}
-            >
-              Cancel
-            </button>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-2.5">
+              <button type="submit" className="w-full sm:w-auto px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-green-500 text-white hover:bg-green-600">
+                Update Customer
+              </button>
+              <button
+                type="button"
+                className="w-full sm:w-auto px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-gray-400 text-white hover:bg-gray-500"
+                onClick={() => {
+                  setEditingCustomer(false);
+                  setCustomerForm({
+                    first_name: customer.first_name,
+                    last_name: customer.last_name,
+                    phone_number: customer.phone_number
+                  });
+                }}
+              >
+                Cancel
+              </button>
+            </div>
           </form>
         )}
       </div>
 
-      <div className="bg-white p-5 rounded-lg shadow mb-5">
-        <div className="flex justify-between items-center mb-5">
-          <h2 className="text-slate-700 text-xl font-semibold">
+      <div className="bg-white p-4 sm:p-5 rounded-lg shadow mb-5">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-5 gap-3">
+          <h2 className="text-slate-700 text-lg sm:text-xl font-semibold">
             Addresses
             {addresses.length === 1 && (
-              <span className="inline-block px-2 py-1 bg-blue-500 text-white rounded text-xs ml-2.5">
+              <span className="inline-block px-2 py-1 bg-blue-500 text-white rounded text-xs ml-2">
                 Single Address
               </span>
             )}
             {addresses.length > 1 && (
-              <span className="inline-block px-2 py-1 bg-blue-500 text-white rounded text-xs ml-2.5">
+              <span className="inline-block px-2 py-1 bg-blue-500 text-white rounded text-xs ml-2">
                 Multiple Addresses ({addresses.length})
               </span>
             )}
           </h2>
           <button
-            className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-green-500 text-white hover:bg-green-600"
+            className="w-full sm:w-auto px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-green-500 text-white hover:bg-green-600"
             onClick={() => {
               setShowAddAddress(true);
               setEditingAddress(null);
@@ -286,9 +290,9 @@ function CustomerDetails() {
 
         {showAddAddress && (
           <form onSubmit={handleAddressSubmit} className="mb-5 p-4 bg-gray-50 rounded">
-            <h3 className="mb-4 text-lg font-semibold">{editingAddress ? 'Edit Address' : 'Add New Address'}</h3>
-            <div className="mb-5">
-              <label className="block mb-1 font-medium text-gray-700">Address Line *</label>
+            <h3 className="mb-4 text-base sm:text-lg font-semibold">{editingAddress ? 'Edit Address' : 'Add New Address'}</h3>
+            <div className="mb-4 sm:mb-5">
+              <label className="block mb-1 text-sm sm:text-base font-medium text-gray-700">Address Line *</label>
               <input
                 type="text"
                 value={addressForm.address_line}
@@ -297,8 +301,8 @@ function CustomerDetails() {
               />
             </div>
 
-            <div className="mb-5">
-              <label className="block mb-1 font-medium text-gray-700">City *</label>
+            <div className="mb-4 sm:mb-5">
+              <label className="block mb-1 text-sm sm:text-base font-medium text-gray-700">City *</label>
               <input
                 type="text"
                 value={addressForm.city}
@@ -307,8 +311,8 @@ function CustomerDetails() {
               />
             </div>
 
-            <div className="mb-5">
-              <label className="block mb-1 font-medium text-gray-700">State *</label>
+            <div className="mb-4 sm:mb-5">
+              <label className="block mb-1 text-sm sm:text-base font-medium text-gray-700">State *</label>
               <input
                 type="text"
                 value={addressForm.state}
@@ -317,8 +321,8 @@ function CustomerDetails() {
               />
             </div>
 
-            <div className="mb-5">
-              <label className="block mb-1 font-medium text-gray-700">Pin Code *</label>
+            <div className="mb-4 sm:mb-5">
+              <label className="block mb-1 text-sm sm:text-base font-medium text-gray-700">Pin Code *</label>
               <input
                 type="text"
                 value={addressForm.pin_code}
@@ -327,43 +331,47 @@ function CustomerDetails() {
               />
             </div>
 
-            <button type="submit" className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-green-500 text-white hover:bg-green-600">
-              {editingAddress ? 'Update Address' : 'Add Address'}
-            </button>
-            <button
-              type="button"
-              className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-gray-400 text-white hover:bg-gray-500 ml-2.5"
-              onClick={() => {
-                setShowAddAddress(false);
-                setEditingAddress(null);
-                setAddressForm({ address_line: '', city: '', state: '', pin_code: '' });
-              }}
-            >
-              Cancel
-            </button>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-2.5">
+              <button type="submit" className="w-full sm:w-auto px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-green-500 text-white hover:bg-green-600">
+                {editingAddress ? 'Update Address' : 'Add Address'}
+              </button>
+              <button
+                type="button"
+                className="w-full sm:w-auto px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-gray-400 text-white hover:bg-gray-500"
+                onClick={() => {
+                  setShowAddAddress(false);
+                  setEditingAddress(null);
+                  setAddressForm({ address_line: '', city: '', state: '', pin_code: '' });
+                }}
+              >
+                Cancel
+              </button>
+            </div>
           </form>
         )}
 
         {addresses.length === 0 ? (
-          <p>No addresses found. Add an address to get started.</p>
+          <p className="text-gray-600">No addresses found. Add an address to get started.</p>
         ) : (
           <div className="mt-5">
             {addresses.map(address => (
               <div key={address.id} className="bg-gray-50 p-4 rounded mb-4 border-l-4 border-blue-500">
-                <h4 className="text-slate-700 mb-2.5 text-lg font-semibold">Address #{address.id}</h4>
-                <p className="my-1"><strong>Address Line:</strong> {address.address_line}</p>
-                <p className="my-1"><strong>City:</strong> {address.city}</p>
-                <p className="my-1"><strong>State:</strong> {address.state}</p>
-                <p className="my-1"><strong>Pin Code:</strong> {address.pin_code}</p>
-                <div className="mt-2.5 flex gap-2.5">
+                <h4 className="text-slate-700 mb-2.5 text-base sm:text-lg font-semibold">Address #{address.id}</h4>
+                <div className="space-y-1 text-sm sm:text-base">
+                  <p><strong>Address Line:</strong> {address.address_line}</p>
+                  <p><strong>City:</strong> {address.city}</p>
+                  <p><strong>State:</strong> {address.state}</p>
+                  <p><strong>Pin Code:</strong> {address.pin_code}</p>
+                </div>
+                <div className="mt-3 flex flex-col sm:flex-row gap-2 sm:gap-2.5">
                   <button
-                    className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-blue-500 text-white hover:bg-blue-600"
+                    className="w-full sm:w-auto px-4 sm:px-5 py-2 sm:py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-blue-500 text-white hover:bg-blue-600"
                     onClick={() => handleEditAddress(address)}
                   >
                     Edit
                   </button>
                   <button
-                    className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-red-500 text-white hover:bg-red-600"
+                    className="w-full sm:w-auto px-4 sm:px-5 py-2 sm:py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-red-500 text-white hover:bg-red-600"
                     onClick={() => handleDeleteAddress(address.id)}
                   >
                     Delete
@@ -375,7 +383,7 @@ function CustomerDetails() {
         )}
       </div>
 
-      <button className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-gray-400 text-white hover:bg-gray-500" onClick={() => navigate('/customers/all')}>
+      <button className="w-full sm:w-auto px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-gray-400 text-white hover:bg-gray-500" onClick={() => navigate('/customers/all')}>
         Back to Customer List
       </button>
     </div>
