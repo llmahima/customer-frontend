@@ -16,6 +16,7 @@ function CreateCustomer() {
     pin_code: ''
   });
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -71,6 +72,7 @@ function CreateCustomer() {
       return;
     }
 
+    setIsSubmitting(true);
     try {
       const response = await fetch(`${API_URL}/customers`, {
         method: 'POST',
@@ -102,6 +104,8 @@ function CreateCustomer() {
     } catch (error) {
       console.error('Error creating customer:', error);
       toast.error('Error creating customer. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -300,14 +304,19 @@ function CreateCustomer() {
         <div className="flex gap-2 pt-6 border-t border-gray-200">
           <button
             type="submit"
-            className="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded hover:bg-gray-800 transition-colors"
+            disabled={isSubmitting}
+            className="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
           >
-            Create Customer
+            {isSubmitting && (
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+            )}
+            {isSubmitting ? 'Creating Customer...' : 'Create Customer'}
           </button>
           <button
             type="button"
             onClick={() => navigate('/customers/all')}
-            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 transition-colors"
+            disabled={isSubmitting}
+            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Cancel
           </button>

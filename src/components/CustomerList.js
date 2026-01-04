@@ -114,7 +114,14 @@ function CustomerList() {
   };
 
   if (loading) {
-    return <div className="bg-white p-5 rounded-lg shadow mb-5">Loading...</div>;
+    return (
+      <div className="bg-white p-5 rounded border border-gray-200 mb-5">
+        <div className="flex flex-col items-center justify-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mb-4"></div>
+          <p className="text-gray-600 text-sm">Loading customers...</p>
+        </div>
+      </div>
+    );
   }
 
   return (

@@ -12,6 +12,8 @@ function CustomerDetails() {
   const [editingCustomer, setEditingCustomer] = useState(false);
   const [editingAddress, setEditingAddress] = useState(null);
   const [showAddAddress, setShowAddAddress] = useState(false);
+  const [isUpdatingCustomer, setIsUpdatingCustomer] = useState(false);
+  const [isSavingAddress, setIsSavingAddress] = useState(false);
 
   const [customerForm, setCustomerForm] = useState({
     first_name: '',
@@ -79,6 +81,7 @@ function CustomerDetails() {
       return;
     }
 
+    setIsUpdatingCustomer(true);
     try {
       const response = await fetch(`${API_URL}/customers/${id}`, {
         method: 'PUT',
@@ -100,6 +103,8 @@ function CustomerDetails() {
     } catch (error) {
       console.error('Error updating customer:', error);
       toast.error('Error updating customer. Please try again.');
+    } finally {
+      setIsUpdatingCustomer(false);
     }
   };
 
@@ -111,6 +116,7 @@ function CustomerDetails() {
       return;
     }
 
+    setIsSavingAddress(true);
     try {
       const url = editingAddress
         ? `${API_URL}/addresses/${editingAddress}`
@@ -139,6 +145,8 @@ function CustomerDetails() {
     } catch (error) {
       console.error('Error saving address:', error);
       toast.error('Error saving address. Please try again.');
+    } finally {
+      setIsSavingAddress(false);
     }
   };
 
@@ -177,11 +185,22 @@ function CustomerDetails() {
   };
 
   if (loading) {
-    return <div className="bg-white p-5 rounded-lg shadow mb-5">Loading...</div>;
+    return (
+      <div className="bg-white p-5 rounded border border-gray-200 mb-5">
+        <div className="flex flex-col items-center justify-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mb-4"></div>
+          <p className="text-gray-600 text-sm">Loading customer details...</p>
+        </div>
+      </div>
+    );
   }
 
   if (!customer) {
-    return <div className="bg-white p-5 rounded-lg shadow mb-5">Customer not found</div>;
+    return (
+      <div className="bg-white p-5 rounded border border-gray-200 mb-5">
+        <p className="text-gray-600">Customer not found</p>
+      </div>
+    );
   }
 
   return (
@@ -266,13 +285,18 @@ function CustomerDetails() {
             <div className="flex gap-2 pt-4 border-t border-gray-200">
               <button
                 type="submit"
-                className="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded hover:bg-gray-800 transition-colors"
+                disabled={isUpdatingCustomer}
+                className="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
               >
-                Update Customer
+                {isUpdatingCustomer && (
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                )}
+                {isUpdatingCustomer ? 'Updating...' : 'Update Customer'}
               </button>
               <button
                 type="button"
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 transition-colors"
+                disabled={isUpdatingCustomer}
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 onClick={() => {
                   setEditingCustomer(false);
                   setCustomerForm({
@@ -373,13 +397,21 @@ function CustomerDetails() {
             <div className="flex gap-2 pt-4 border-t border-gray-200">
               <button
                 type="submit"
-                className="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded hover:bg-gray-800 transition-colors"
+                disabled={isSavingAddress}
+                className="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
               >
-                {editingAddress ? 'Update Address' : 'Add Address'}
+                {isSavingAddress && (
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                )}
+                {isSavingAddress 
+                  ? (editingAddress ? 'Updating...' : 'Adding...') 
+                  : (editingAddress ? 'Update Address' : 'Add Address')
+                }
               </button>
               <button
                 type="button"
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 transition-colors"
+                disabled={isSavingAddress}
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 onClick={() => {
                   setShowAddAddress(false);
                   setEditingAddress(null);
