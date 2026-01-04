@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import CustomerList from './components/CustomerList';
+import CreateCustomer from './components/CreateCustomer';
+import CustomerDetails from './components/CustomerDetails';
 
 function App() {
   return (
@@ -12,6 +15,12 @@ function App() {
             <Link to="/create">Create Customer</Link>
           </nav>
         </div>
+
+        <Routes>
+          <Route path="/" element={<CustomerList />} />
+          <Route path="/create" element={<CreateCustomer />} />
+          <Route path="/customer/:id" element={<CustomerDetails />} />
+        </Routes>
       </div>
     </Router>
   );
