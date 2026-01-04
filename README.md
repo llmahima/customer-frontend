@@ -17,32 +17,32 @@ This is the frontend application for the Customer Management System. It provides
 ## Features
 
 ### Customer Management
-- ✅ Create new customers with form validation
-- ✅ View list of all customers
-- ✅ View detailed customer information
-- ✅ Update customer details (First Name, Last Name, Phone Number)
-- ✅ Delete customers with confirmation
+- Create new customers with form validation
+- View list of all customers
+- View detailed customer information
+- Update customer details (First Name, Last Name, Phone Number)
+- Delete customers with confirmation
 
 ### Address Management
-- ✅ Add multiple addresses for each customer
-- ✅ View all addresses for a customer
-- ✅ Visual indicators for single or multiple addresses
-- ✅ Update address information
-- ✅ Delete addresses
+- Add multiple addresses for each customer
+- View all addresses for a customer
+- Visual indicators for single or multiple addresses
+- Update address information
+- Delete addresses
 
 ### Search & Filter
-- ✅ Search customers by City
-- ✅ Search customers by State
-- ✅ Search customers by Pin Code
-- ✅ Clear filters functionality
+- Search customers by City
+- Search customers by State
+- Search customers by Pin Code
+- Clear filters functionality
 
 ### User Interface
-- ✅ Responsive design (mobile, tablet, desktop)
-- ✅ Modern UI with Tailwind CSS
-- ✅ Toast notifications for user feedback
-- ✅ Smooth navigation with React Router
-- ✅ Loading states
-- ✅ Error handling
+- Responsive design (mobile, tablet, desktop)
+- Modern UI with Tailwind CSS
+- Toast notifications for user feedback
+- Smooth navigation with React Router
+- Loading states
+- Error handling
 
 ## How to Run
 
@@ -144,5 +144,4 @@ The frontend connects to the backend API. Update the API URL in:
 - Toast notifications provide user feedback for all actions
 - All forms include client-side validation
 - The UI is built with Tailwind CSS for consistent styling
-- The application is production-ready and can be deployed to Vercel, Netlify, or any static hosting service
 
