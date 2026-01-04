@@ -96,20 +96,21 @@ function CustomerList() {
   };
 
   if (loading) {
-    return <div className="card">Loading...</div>;
+    return <div className="bg-white p-5 rounded-lg shadow mb-5">Loading...</div>;
   }
 
   return (
     <div>
-      <div className="card">
-        <h2>Search & Filter Customers</h2>
-        <div className="search-filters">
+      <div className="bg-white p-5 rounded-lg shadow mb-5">
+        <h2 className="mb-5 text-slate-700 text-xl font-semibold">Search & Filter Customers</h2>
+        <div className="flex gap-4 mb-5 flex-wrap">
           <input
             type="text"
             name="city"
             placeholder="Search by City"
             value={filters.city}
             onChange={handleFilterChange}
+            className="flex-1 min-w-[200px] p-2.5 border border-gray-300 rounded"
           />
           <input
             type="text"
@@ -117,6 +118,7 @@ function CustomerList() {
             placeholder="Search by State"
             value={filters.state}
             onChange={handleFilterChange}
+            className="flex-1 min-w-[200px] p-2.5 border border-gray-300 rounded"
           />
           <input
             type="text"
@@ -124,35 +126,39 @@ function CustomerList() {
             placeholder="Search by Pin Code"
             value={filters.pin_code}
             onChange={handleFilterChange}
+            className="flex-1 min-w-[200px] p-2.5 border border-gray-300 rounded"
           />
-          <button className="btn btn-secondary" onClick={clearFilters}>
+          <button 
+            className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-gray-400 text-white hover:bg-gray-500" 
+            onClick={clearFilters}
+          >
             Clear Filters
           </button>
         </div>
       </div>
 
-      <div className="card">
-        <h2>Customer List ({filteredCustomers.length})</h2>
+      <div className="bg-white p-5 rounded-lg shadow mb-5">
+        <h2 className="mb-5 text-slate-700 text-xl font-semibold">Customer List ({filteredCustomers.length})</h2>
         {filteredCustomers.length === 0 ? (
           <p>No customers found.</p>
         ) : (
-          <div className="customer-list">
+          <div className="grid gap-4">
             {filteredCustomers.map(customer => (
-              <div key={customer.id} className="customer-item">
-                <div className="customer-info">
-                  <h3>{customer.first_name} {customer.last_name}</h3>
-                  <p>Phone: {customer.phone_number}</p>
-                  <p>City: {customer.city}, State: {customer.state}, Pin: {customer.pin_code}</p>
+              <div key={customer.id} className="bg-white p-5 rounded-lg shadow flex justify-between items-center">
+                <div>
+                  <h3 className="text-slate-700 mb-2 text-lg font-semibold">{customer.first_name} {customer.last_name}</h3>
+                  <p className="text-gray-500 my-1">Phone: {customer.phone_number}</p>
+                  <p className="text-gray-500 my-1">City: {customer.city}, State: {customer.state}, Pin: {customer.pin_code}</p>
                 </div>
-                <div className="customer-actions">
+                <div className="flex gap-2.5">
                   <button
-                    className="btn btn-primary"
+                    className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-blue-500 text-white hover:bg-blue-600"
                     onClick={() => navigate(`/customer/${customer.id}`)}
                   >
                     View Details
                   </button>
                   <button
-                    className="btn btn-danger"
+                    className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-red-500 text-white hover:bg-red-600"
                     onClick={() => handleDelete(customer.id)}
                   >
                     Delete

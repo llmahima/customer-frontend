@@ -177,69 +177,71 @@ function CustomerDetails() {
   };
 
   if (loading) {
-    return <div className="card">Loading...</div>;
+    return <div className="bg-white p-5 rounded-lg shadow mb-5">Loading...</div>;
   }
 
   if (!customer) {
-    return <div className="card">Customer not found</div>;
+    return <div className="bg-white p-5 rounded-lg shadow mb-5">Customer not found</div>;
   }
 
   return (
     <div>
-      <div className="card">
-        <h2>Customer Details</h2>
+      <div className="bg-white p-5 rounded-lg shadow mb-5">
+        <h2 className="mb-5 text-slate-700 text-xl font-semibold">Customer Details</h2>
         
         {!editingCustomer ? (
           <div>
-            <p><strong>First Name:</strong> {customer.first_name}</p>
-            <p><strong>Last Name:</strong> {customer.last_name}</p>
-            <p><strong>Phone Number:</strong> {customer.phone_number}</p>
-            <p><strong>City:</strong> {customer.city}</p>
-            <p><strong>State:</strong> {customer.state}</p>
-            <p><strong>Pin Code:</strong> {customer.pin_code}</p>
+            <p className="my-2"><strong>First Name:</strong> {customer.first_name}</p>
+            <p className="my-2"><strong>Last Name:</strong> {customer.last_name}</p>
+            <p className="my-2"><strong>Phone Number:</strong> {customer.phone_number}</p>
+            <p className="my-2"><strong>City:</strong> {customer.city}</p>
+            <p className="my-2"><strong>State:</strong> {customer.state}</p>
+            <p className="my-2"><strong>Pin Code:</strong> {customer.pin_code}</p>
             <button
-              className="btn btn-primary"
+              className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-blue-500 text-white hover:bg-blue-600 mt-4"
               onClick={() => setEditingCustomer(true)}
-              style={{ marginTop: '15px' }}
             >
               Edit Customer
             </button>
           </div>
         ) : (
           <form onSubmit={handleCustomerUpdate}>
-            <div className="form-group">
-              <label>First Name *</label>
+            <div className="mb-5">
+              <label className="block mb-1 font-medium text-gray-700">First Name *</label>
               <input
                 type="text"
                 value={customerForm.first_name}
                 onChange={(e) => setCustomerForm({ ...customerForm, first_name: e.target.value })}
+                className="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-blue-500"
               />
             </div>
 
-            <div className="form-group">
-              <label>Last Name *</label>
+            <div className="mb-5">
+              <label className="block mb-1 font-medium text-gray-700">Last Name *</label>
               <input
                 type="text"
                 value={customerForm.last_name}
                 onChange={(e) => setCustomerForm({ ...customerForm, last_name: e.target.value })}
+                className="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-blue-500"
               />
             </div>
 
-            <div className="form-group">
-              <label>Phone Number *</label>
+            <div className="mb-5">
+              <label className="block mb-1 font-medium text-gray-700">Phone Number *</label>
               <input
                 type="tel"
                 value={customerForm.phone_number}
                 onChange={(e) => setCustomerForm({ ...customerForm, phone_number: e.target.value })}
+                className="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-blue-500"
               />
             </div>
 
-            <button type="submit" className="btn btn-success">
+            <button type="submit" className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-green-500 text-white hover:bg-green-600">
               Update Customer
             </button>
             <button
               type="button"
-              className="btn btn-secondary"
+              className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-gray-400 text-white hover:bg-gray-500 ml-2.5"
               onClick={() => {
                 setEditingCustomer(false);
                 setCustomerForm({
@@ -248,7 +250,6 @@ function CustomerDetails() {
                   phone_number: customer.phone_number
                 });
               }}
-              style={{ marginLeft: '10px' }}
             >
               Cancel
             </button>
@@ -256,15 +257,23 @@ function CustomerDetails() {
         )}
       </div>
 
-      <div className="card">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-          <h2>
+      <div className="bg-white p-5 rounded-lg shadow mb-5">
+        <div className="flex justify-between items-center mb-5">
+          <h2 className="text-slate-700 text-xl font-semibold">
             Addresses
-            {addresses.length === 1 && <span className="address-badge">Single Address</span>}
-            {addresses.length > 1 && <span className="address-badge">Multiple Addresses ({addresses.length})</span>}
+            {addresses.length === 1 && (
+              <span className="inline-block px-2 py-1 bg-blue-500 text-white rounded text-xs ml-2.5">
+                Single Address
+              </span>
+            )}
+            {addresses.length > 1 && (
+              <span className="inline-block px-2 py-1 bg-blue-500 text-white rounded text-xs ml-2.5">
+                Multiple Addresses ({addresses.length})
+              </span>
+            )}
           </h2>
           <button
-            className="btn btn-success"
+            className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-green-500 text-white hover:bg-green-600"
             onClick={() => {
               setShowAddAddress(true);
               setEditingAddress(null);
@@ -276,56 +285,59 @@ function CustomerDetails() {
         </div>
 
         {showAddAddress && (
-          <form onSubmit={handleAddressSubmit} style={{ marginBottom: '20px', padding: '15px', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
-            <h3>{editingAddress ? 'Edit Address' : 'Add New Address'}</h3>
-            <div className="form-group">
-              <label>Address Line *</label>
+          <form onSubmit={handleAddressSubmit} className="mb-5 p-4 bg-gray-50 rounded">
+            <h3 className="mb-4 text-lg font-semibold">{editingAddress ? 'Edit Address' : 'Add New Address'}</h3>
+            <div className="mb-5">
+              <label className="block mb-1 font-medium text-gray-700">Address Line *</label>
               <input
                 type="text"
                 value={addressForm.address_line}
                 onChange={(e) => setAddressForm({ ...addressForm, address_line: e.target.value })}
+                className="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-blue-500"
               />
             </div>
 
-            <div className="form-group">
-              <label>City *</label>
+            <div className="mb-5">
+              <label className="block mb-1 font-medium text-gray-700">City *</label>
               <input
                 type="text"
                 value={addressForm.city}
                 onChange={(e) => setAddressForm({ ...addressForm, city: e.target.value })}
+                className="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-blue-500"
               />
             </div>
 
-            <div className="form-group">
-              <label>State *</label>
+            <div className="mb-5">
+              <label className="block mb-1 font-medium text-gray-700">State *</label>
               <input
                 type="text"
                 value={addressForm.state}
                 onChange={(e) => setAddressForm({ ...addressForm, state: e.target.value })}
+                className="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-blue-500"
               />
             </div>
 
-            <div className="form-group">
-              <label>Pin Code *</label>
+            <div className="mb-5">
+              <label className="block mb-1 font-medium text-gray-700">Pin Code *</label>
               <input
                 type="text"
                 value={addressForm.pin_code}
                 onChange={(e) => setAddressForm({ ...addressForm, pin_code: e.target.value })}
+                className="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-blue-500"
               />
             </div>
 
-            <button type="submit" className="btn btn-success">
+            <button type="submit" className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-green-500 text-white hover:bg-green-600">
               {editingAddress ? 'Update Address' : 'Add Address'}
             </button>
             <button
               type="button"
-              className="btn btn-secondary"
+              className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-gray-400 text-white hover:bg-gray-500 ml-2.5"
               onClick={() => {
                 setShowAddAddress(false);
                 setEditingAddress(null);
                 setAddressForm({ address_line: '', city: '', state: '', pin_code: '' });
               }}
-              style={{ marginLeft: '10px' }}
             >
               Cancel
             </button>
@@ -335,23 +347,23 @@ function CustomerDetails() {
         {addresses.length === 0 ? (
           <p>No addresses found. Add an address to get started.</p>
         ) : (
-          <div className="address-list">
+          <div className="mt-5">
             {addresses.map(address => (
-              <div key={address.id} className="address-item">
-                <h4>Address #{address.id}</h4>
-                <p><strong>Address Line:</strong> {address.address_line}</p>
-                <p><strong>City:</strong> {address.city}</p>
-                <p><strong>State:</strong> {address.state}</p>
-                <p><strong>Pin Code:</strong> {address.pin_code}</p>
-                <div className="address-actions">
+              <div key={address.id} className="bg-gray-50 p-4 rounded mb-4 border-l-4 border-blue-500">
+                <h4 className="text-slate-700 mb-2.5 text-lg font-semibold">Address #{address.id}</h4>
+                <p className="my-1"><strong>Address Line:</strong> {address.address_line}</p>
+                <p className="my-1"><strong>City:</strong> {address.city}</p>
+                <p className="my-1"><strong>State:</strong> {address.state}</p>
+                <p className="my-1"><strong>Pin Code:</strong> {address.pin_code}</p>
+                <div className="mt-2.5 flex gap-2.5">
                   <button
-                    className="btn btn-primary"
+                    className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-blue-500 text-white hover:bg-blue-600"
                     onClick={() => handleEditAddress(address)}
                   >
                     Edit
                   </button>
                   <button
-                    className="btn btn-danger"
+                    className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-red-500 text-white hover:bg-red-600"
                     onClick={() => handleDeleteAddress(address.id)}
                   >
                     Delete
@@ -363,7 +375,7 @@ function CustomerDetails() {
         )}
       </div>
 
-      <button className="btn btn-secondary" onClick={() => navigate('/')}>
+      <button className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-gray-400 text-white hover:bg-gray-500" onClick={() => navigate('/')}>
         Back to Customer List
       </button>
     </div>

@@ -100,77 +100,83 @@ function CreateCustomer() {
   };
 
   return (
-    <div className="card">
-      <h2>Create New Customer</h2>
+    <div className="bg-white p-5 rounded-lg shadow mb-5">
+      <h2 className="mb-5 text-slate-700 text-xl font-semibold">Create New Customer</h2>
 
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>First Name *</label>
+        <div className="mb-5">
+          <label className="block mb-1 font-medium text-gray-700">First Name *</label>
           <input
             type="text"
             name="first_name"
             value={formData.first_name}
             onChange={handleChange}
+            className="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-blue-500"
           />
-          {errors.first_name && <div className="error">{errors.first_name}</div>}
+          {errors.first_name && <div className="text-red-500 text-xs mt-1">{errors.first_name}</div>}
         </div>
 
-        <div className="form-group">
-          <label>Last Name *</label>
+        <div className="mb-5">
+          <label className="block mb-1 font-medium text-gray-700">Last Name *</label>
           <input
             type="text"
             name="last_name"
             value={formData.last_name}
             onChange={handleChange}
+            className="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-blue-500"
           />
-          {errors.last_name && <div className="error">{errors.last_name}</div>}
+          {errors.last_name && <div className="text-red-500 text-xs mt-1">{errors.last_name}</div>}
         </div>
 
-        <div className="form-group">
-          <label>Phone Number *</label>
+        <div className="mb-5">
+          <label className="block mb-1 font-medium text-gray-700">Phone Number *</label>
           <input
             type="tel"
             name="phone_number"
             value={formData.phone_number}
             onChange={handleChange}
+            className="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-blue-500"
           />
-          {errors.phone_number && <div className="error">{errors.phone_number}</div>}
+          {errors.phone_number && <div className="text-red-500 text-xs mt-1">{errors.phone_number}</div>}
         </div>
 
-        <div className="form-group">
-          <label>City *</label>
+        <div className="mb-5">
+          <label className="block mb-1 font-medium text-gray-700">City *</label>
           <input
             type="text"
             name="city"
             value={formData.city}
             onChange={handleChange}
+            className="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-blue-500"
           />
-          {errors.city && <div className="error">{errors.city}</div>}
+          {errors.city && <div className="text-red-500 text-xs mt-1">{errors.city}</div>}
         </div>
 
-        <div className="form-group">
-          <label>State *</label>
+        <div className="mb-5">
+          <label className="block mb-1 font-medium text-gray-700">State *</label>
           <input
             type="text"
             name="state"
             value={formData.state}
             onChange={handleChange}
+            className="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-blue-500"
           />
-          {errors.state && <div className="error">{errors.state}</div>}
+          {errors.state && <div className="text-red-500 text-xs mt-1">{errors.state}</div>}
         </div>
 
-        <div className="form-group">
-          <label>Pin Code *</label>
+        <div className="mb-5">
+          <label className="block mb-1 font-medium text-gray-700">Pin Code *</label>
           <input
             type="text"
             name="pin_code"
             value={formData.pin_code}
             onChange={handleChange}
+            className="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-blue-500"
           />
-          {errors.pin_code && <div className="error">{errors.pin_code}</div>}
+          {errors.pin_code && <div className="text-red-500 text-xs mt-1">{errors.pin_code}</div>}
         </div>
 
-        <button type="submit" className="btn btn-success">
+        <button type="submit" className="px-5 py-2.5 border-none rounded cursor-pointer text-sm transition-colors bg-green-500 text-white hover:bg-green-600">
           Create Customer
         </button>
       </form>
