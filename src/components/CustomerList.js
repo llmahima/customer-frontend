@@ -227,63 +227,65 @@ function CustomerList() {
 
             {/* Pagination Controls */}
             {pagination.totalPages > 1 && (
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-gray-200">
-                <div className="text-sm text-gray-600">
-                  Showing {((currentPage - 1) * pagination.limit) + 1} to {Math.min(currentPage * pagination.limit, pagination.totalCount)} of {pagination.totalCount} customers
-                </div>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={!pagination.hasPrevPage}
-                    className={`px-4 py-2 rounded text-sm transition-colors ${
-                      pagination.hasPrevPage
-                        ? 'bg-blue-500 text-white hover:bg-blue-600 cursor-pointer'
-                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    }`}
-                  >
-                    Previous
-                  </button>
-                  
-                  <div className="flex gap-1">
-                    {Array.from({ length: Math.min(5, pagination.totalPages) }, (_, i) => {
-                      let pageNum;
-                      if (pagination.totalPages <= 5) {
-                        pageNum = i + 1;
-                      } else if (currentPage <= 3) {
-                        pageNum = i + 1;
-                      } else if (currentPage >= pagination.totalPages - 2) {
-                        pageNum = pagination.totalPages - 4 + i;
-                      } else {
-                        pageNum = currentPage - 2 + i;
-                      }
-                      
-                      return (
-                        <button
-                          key={pageNum}
-                          onClick={() => handlePageChange(pageNum)}
-                          className={`px-3 py-2 rounded text-sm transition-colors ${
-                            currentPage === pageNum
-                              ? 'bg-blue-600 text-white'
-                              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                          }`}
-                        >
-                          {pageNum}
-                        </button>
-                      );
-                    })}
+              <div className="mt-6 pt-4 border-t border-gray-200">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="text-sm text-gray-600">
+                    Showing <span className="font-medium text-gray-900">{((currentPage - 1) * pagination.limit) + 1}</span> to <span className="font-medium text-gray-900">{Math.min(currentPage * pagination.limit, pagination.totalCount)}</span> of <span className="font-medium text-gray-900">{pagination.totalCount}</span> customers
                   </div>
-                  
-                  <button
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={!pagination.hasNextPage}
-                    className={`px-4 py-2 rounded text-sm transition-colors ${
-                      pagination.hasNextPage
-                        ? 'bg-blue-500 text-white hover:bg-blue-600 cursor-pointer'
-                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    }`}
-                  >
-                    Next
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={!pagination.hasPrevPage}
+                      className={`px-3 py-2 text-sm font-medium rounded border transition-colors ${
+                        pagination.hasPrevPage
+                          ? 'text-gray-700 bg-white border-gray-300 hover:bg-gray-50'
+                          : 'text-gray-400 bg-gray-100 border-gray-200 cursor-not-allowed'
+                      }`}
+                    >
+                      Previous
+                    </button>
+                    
+                    <div className="flex gap-1">
+                      {Array.from({ length: Math.min(5, pagination.totalPages) }, (_, i) => {
+                        let pageNum;
+                        if (pagination.totalPages <= 5) {
+                          pageNum = i + 1;
+                        } else if (currentPage <= 3) {
+                          pageNum = i + 1;
+                        } else if (currentPage >= pagination.totalPages - 2) {
+                          pageNum = pagination.totalPages - 4 + i;
+                        } else {
+                          pageNum = currentPage - 2 + i;
+                        }
+                        
+                        return (
+                          <button
+                            key={pageNum}
+                            onClick={() => handlePageChange(pageNum)}
+                            className={`px-3 py-2 text-sm font-medium rounded border transition-colors ${
+                              currentPage === pageNum
+                                ? 'text-white bg-gray-900 border-gray-900'
+                                : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-50'
+                            }`}
+                          >
+                            {pageNum}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    
+                    <button
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={!pagination.hasNextPage}
+                      className={`px-3 py-2 text-sm font-medium rounded border transition-colors ${
+                        pagination.hasNextPage
+                          ? 'text-gray-700 bg-white border-gray-300 hover:bg-gray-50'
+                          : 'text-gray-400 bg-gray-100 border-gray-200 cursor-not-allowed'
+                      }`}
+                    >
+                      Next
+                    </button>
+                  </div>
                 </div>
               </div>
             )}

@@ -434,10 +434,10 @@ function CustomerDetails() {
           </div>
         ) : (
           <div className="space-y-3">
-            {addresses.map(address => (
+            {addresses.map((address, index) => (
               <div key={address.id} className="bg-white p-5 rounded border border-gray-200">
                 <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-200">
-                  <h4 className="text-gray-900 text-base font-semibold">Address #{address.id}</h4>
+                  <h4 className="text-gray-900 text-base font-semibold">Address {index + 1}</h4>
                 </div>
                 <div className="space-y-2 mb-4">
                   <div className="flex items-start gap-4 py-1">
