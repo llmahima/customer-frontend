@@ -186,47 +186,32 @@ function CustomerDetails() {
 
   return (
     <div>
-      <div className="bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-lg mb-5">
-        <div className="mb-6">
-          <h2 className="text-slate-700 text-xl sm:text-2xl md:text-3xl font-bold mb-2">Customer Details</h2>
-          <p className="text-gray-500 text-sm sm:text-base">View and manage customer information</p>
+      <div className="bg-white p-5 rounded border border-gray-200 mb-5">
+        <div className="mb-4">
+          <h2 className="text-gray-900 text-lg font-semibold mb-1">Customer Details</h2>
+          <p className="text-sm text-gray-600">View and manage customer information</p>
         </div>
         
         {!editingCustomer ? (
           <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 mb-6">
-              <div className="bg-gray-50 p-4 rounded-lg border-l-4 border-blue-500">
-                <p className="text-xs sm:text-sm text-gray-500 mb-1">First Name</p>
-                <p className="text-sm sm:text-base font-semibold text-gray-800">{customer.first_name}</p>
+            <div className="space-y-3 mb-6">
+              <div className="flex items-center gap-4 py-2 border-b border-gray-200">
+                <span className="text-sm text-gray-600 w-32">First Name:</span>
+                <span className="text-base font-medium text-gray-900">{customer.first_name}</span>
               </div>
-              <div className="bg-gray-50 p-4 rounded-lg border-l-4 border-blue-500">
-                <p className="text-xs sm:text-sm text-gray-500 mb-1">Last Name</p>
-                <p className="text-sm sm:text-base font-semibold text-gray-800">{customer.last_name}</p>
+              <div className="flex items-center gap-4 py-2 border-b border-gray-200">
+                <span className="text-sm text-gray-600 w-32">Last Name:</span>
+                <span className="text-base font-medium text-gray-900">{customer.last_name}</span>
               </div>
-              <div className="bg-gray-50 p-4 rounded-lg border-l-4 border-blue-500">
-                <p className="text-xs sm:text-sm text-gray-500 mb-1">Phone Number</p>
-                <p className="text-sm sm:text-base font-semibold text-gray-800">{customer.phone_number}</p>
-              </div>
-              <div className="bg-gray-50 p-4 rounded-lg border-l-4 border-blue-500">
-                <p className="text-xs sm:text-sm text-gray-500 mb-1">City</p>
-                <p className="text-sm sm:text-base font-semibold text-gray-800">{customer.city}</p>
-              </div>
-              <div className="bg-gray-50 p-4 rounded-lg border-l-4 border-blue-500">
-                <p className="text-xs sm:text-sm text-gray-500 mb-1">State</p>
-                <p className="text-sm sm:text-base font-semibold text-gray-800">{customer.state}</p>
-              </div>
-              <div className="bg-gray-50 p-4 rounded-lg border-l-4 border-blue-500">
-                <p className="text-xs sm:text-sm text-gray-500 mb-1">Pin Code</p>
-                <p className="text-sm sm:text-base font-semibold text-gray-800">{customer.pin_code}</p>
+              <div className="flex items-center gap-4 py-2 border-b border-gray-200">
+                <span className="text-sm text-gray-600 w-32">Phone Number:</span>
+                <span className="text-base font-medium text-gray-900">{customer.phone_number}</span>
               </div>
             </div>
             <button
-              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition-all transform hover:scale-105 text-sm sm:text-base flex items-center justify-center gap-2"
+              className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 transition-colors"
               onClick={() => setEditingCustomer(true)}
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
               Edit Customer
             </button>
           </div>
@@ -246,7 +231,7 @@ function CustomerDetails() {
                   type="text"
                   value={customerForm.first_name}
                   onChange={(e) => setCustomerForm({ ...customerForm, first_name: e.target.value })}
-                  className="w-full p-4 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                  className="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-gray-500"
                   placeholder="Enter first name"
                 />
               </div>
@@ -259,7 +244,7 @@ function CustomerDetails() {
                   type="text"
                   value={customerForm.last_name}
                   onChange={(e) => setCustomerForm({ ...customerForm, last_name: e.target.value })}
-                  className="w-full p-4 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                  className="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-gray-500"
                   placeholder="Enter last name"
                 />
               </div>
@@ -272,25 +257,22 @@ function CustomerDetails() {
                   type="tel"
                   value={customerForm.phone_number}
                   onChange={(e) => setCustomerForm({ ...customerForm, phone_number: e.target.value })}
-                  className="w-full p-4 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                  className="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-gray-500"
                   placeholder="Enter phone number (min. 10 digits)"
                 />
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 pt-6 border-t border-gray-200">
+            <div className="flex gap-2 pt-4 border-t border-gray-200">
               <button
                 type="submit"
-                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition-all transform hover:scale-105 text-sm sm:text-base flex items-center justify-center gap-2"
+                className="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded hover:bg-gray-800 transition-colors"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
                 Update Customer
               </button>
               <button
                 type="button"
-                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 bg-gray-400 text-white font-semibold rounded-lg shadow-md hover:bg-gray-500 transition-all text-sm sm:text-base"
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 transition-colors"
                 onClick={() => {
                   setEditingCustomer(false);
                   setCustomerForm({
@@ -307,45 +289,30 @@ function CustomerDetails() {
         )}
       </div>
 
-      <div className="bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-lg mb-5">
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-3">
+      <div className="bg-white p-5 rounded border border-gray-200 mb-5">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-3">
           <div>
-            <h2 className="text-slate-700 text-xl sm:text-2xl md:text-3xl font-bold mb-2">Addresses</h2>
-            <div className="flex items-center gap-2">
-              {addresses.length === 0 && (
-                <span className="inline-block px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs sm:text-sm font-medium">
-                  No Addresses
-                </span>
-              )}
-              {addresses.length === 1 && (
-                <span className="inline-block px-3 py-1 bg-blue-500 text-white rounded-full text-xs sm:text-sm font-medium">
-                  Single Address
-                </span>
-              )}
-              {addresses.length > 1 && (
-                <span className="inline-block px-3 py-1 bg-blue-500 text-white rounded-full text-xs sm:text-sm font-medium">
-                  Multiple Addresses ({addresses.length})
-                </span>
-              )}
-            </div>
+            <h2 className="text-gray-900 text-lg font-semibold mb-1">Addresses</h2>
+            <p className="text-sm text-gray-600">
+              {addresses.length === 0 && 'No addresses'}
+              {addresses.length === 1 && '1 address'}
+              {addresses.length > 1 && `${addresses.length} addresses`}
+            </p>
           </div>
           <button
-            className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition-all transform hover:scale-105 text-sm sm:text-base flex items-center justify-center gap-2"
+            className="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded hover:bg-gray-800 transition-colors"
             onClick={() => {
               setShowAddAddress(true);
               setEditingAddress(null);
               setAddressForm({ address_line: '', city: '', state: '', pin_code: '' });
             }}
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-            </svg>
             Add Address
           </button>
         </div>
 
         {showAddAddress && (
-          <form onSubmit={handleAddressSubmit} className="mb-5 p-5 sm:p-6 bg-gray-50 rounded-lg border border-gray-200 max-w-5xl mx-auto">
+          <form onSubmit={handleAddressSubmit} className="mb-5 p-5 bg-white rounded border border-gray-200 max-w-5xl mx-auto">
             <h3 className="mb-6 text-base sm:text-lg font-semibold text-slate-700 pb-2 border-b border-gray-300">
               {editingAddress ? 'Edit Address' : 'Add New Address'}
             </h3>
@@ -358,7 +325,7 @@ function CustomerDetails() {
                   type="text"
                   value={addressForm.address_line}
                   onChange={(e) => setAddressForm({ ...addressForm, address_line: e.target.value })}
-                  className="w-full p-4 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                  className="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-gray-500"
                   placeholder="Enter address line"
                 />
               </div>
@@ -371,7 +338,7 @@ function CustomerDetails() {
                   type="text"
                   value={addressForm.city}
                   onChange={(e) => setAddressForm({ ...addressForm, city: e.target.value })}
-                  className="w-full p-4 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                  className="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-gray-500"
                   placeholder="Enter city"
                 />
               </div>
@@ -384,7 +351,7 @@ function CustomerDetails() {
                   type="text"
                   value={addressForm.state}
                   onChange={(e) => setAddressForm({ ...addressForm, state: e.target.value })}
-                  className="w-full p-4 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                  className="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-gray-500"
                   placeholder="Enter state"
                 />
               </div>
@@ -397,25 +364,22 @@ function CustomerDetails() {
                   type="text"
                   value={addressForm.pin_code}
                   onChange={(e) => setAddressForm({ ...addressForm, pin_code: e.target.value })}
-                  className="w-full p-4 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                  className="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-gray-500"
                   placeholder="Enter pin code"
                 />
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 pt-6 border-t border-gray-300">
+            <div className="flex gap-2 pt-4 border-t border-gray-200">
               <button
                 type="submit"
-                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition-all transform hover:scale-105 text-sm sm:text-base flex items-center justify-center gap-2"
+                className="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded hover:bg-gray-800 transition-colors"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={editingAddress ? "M5 13l4 4L19 7" : "M12 4v16m8-8H4"} />
-                </svg>
                 {editingAddress ? 'Update Address' : 'Add Address'}
               </button>
               <button
                 type="button"
-                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 bg-gray-400 text-white font-semibold rounded-lg shadow-md hover:bg-gray-500 transition-all text-sm sm:text-base"
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 transition-colors"
                 onClick={() => {
                   setShowAddAddress(false);
                   setEditingAddress(null);
@@ -437,41 +401,39 @@ function CustomerDetails() {
             <p className="text-gray-600 text-sm sm:text-base">No addresses found. Add an address to get started.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+          <div className="space-y-3">
             {addresses.map(address => (
-              <div key={address.id} className="bg-gray-50 p-5 rounded-lg border-l-4 border-blue-500 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center justify-between mb-4">
-                  <h4 className="text-slate-700 text-base sm:text-lg font-semibold">Address #{address.id}</h4>
+              <div key={address.id} className="bg-white p-5 rounded border border-gray-200">
+                <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-200">
+                  <h4 className="text-gray-900 text-base font-semibold">Address #{address.id}</h4>
                 </div>
-                <div className="space-y-2.5 mb-4">
-                  <div>
-                    <p className="text-xs sm:text-sm text-gray-500 mb-0.5">Address Line</p>
-                    <p className="text-sm sm:text-base font-medium text-gray-800">{address.address_line}</p>
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-start gap-4 py-1">
+                    <span className="text-sm text-gray-600 w-28">Address Line:</span>
+                    <span className="text-sm text-gray-900">{address.address_line}</span>
                   </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    <div>
-                      <p className="text-xs sm:text-sm text-gray-500 mb-0.5">City</p>
-                      <p className="text-sm sm:text-base font-medium text-gray-800">{address.city}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs sm:text-sm text-gray-500 mb-0.5">State</p>
-                      <p className="text-sm sm:text-base font-medium text-gray-800">{address.state}</p>
-                    </div>
+                  <div className="flex items-start gap-4 py-1">
+                    <span className="text-sm text-gray-600 w-28">City:</span>
+                    <span className="text-sm text-gray-900">{address.city}</span>
                   </div>
-                  <div>
-                    <p className="text-xs sm:text-sm text-gray-500 mb-0.5">Pin Code</p>
-                    <p className="text-sm sm:text-base font-medium text-gray-800">{address.pin_code}</p>
+                  <div className="flex items-start gap-4 py-1">
+                    <span className="text-sm text-gray-600 w-28">State:</span>
+                    <span className="text-sm text-gray-900">{address.state}</span>
+                  </div>
+                  <div className="flex items-start gap-4 py-1">
+                    <span className="text-sm text-gray-600 w-28">Pin Code:</span>
+                    <span className="text-sm text-gray-900">{address.pin_code}</span>
                   </div>
                 </div>
-                <div className="flex flex-col sm:flex-row gap-2 sm:gap-2.5 pt-3 border-t border-gray-200">
+                <div className="flex gap-2 pt-3 border-t border-gray-200">
                   <button
-                    className="flex-1 px-4 sm:px-5 py-2 sm:py-2.5 border-none rounded-lg cursor-pointer text-sm transition-all bg-blue-500 text-white hover:bg-blue-600 font-medium"
+                    className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 transition-colors"
                     onClick={() => handleEditAddress(address)}
                   >
                     Edit
                   </button>
                   <button
-                    className="flex-1 px-4 sm:px-5 py-2 sm:py-2.5 border-none rounded-lg cursor-pointer text-sm transition-all bg-red-500 text-white hover:bg-red-600 font-medium"
+                    className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded hover:bg-red-700 transition-colors"
                     onClick={() => handleDeleteAddress(address.id)}
                   >
                     Delete
@@ -484,12 +446,9 @@ function CustomerDetails() {
       </div>
 
       <button
-        className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 bg-gray-400 text-white font-semibold rounded-lg shadow-md hover:bg-gray-500 transition-all text-sm sm:text-base flex items-center justify-center gap-2"
+        className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 transition-colors"
         onClick={() => navigate('/customers/all')}
       >
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
         Back to Customer List
       </button>
     </div>

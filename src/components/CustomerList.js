@@ -5,7 +5,8 @@ import API_URL from '../config/api';
 
 function CustomerList() {
   const [customers, setCustomers] = useState([]);
-  const [filters, setFilters] = useState({ city: '', state: '', pin_code: '' });
+  const [filterInputs, setFilterInputs] = useState({ city: '', state: '', pin_code: '' }); // What user types
+  const [appliedFilters, setAppliedFilters] = useState({ city: '', state: '', pin_code: '' }); // What triggers API
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [pagination, setPagination] = useState({
@@ -21,7 +22,7 @@ function CustomerList() {
   useEffect(() => {
     fetchCustomers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage, filters.city, filters.state, filters.pin_code]);
+  }, [currentPage, appliedFilters.city, appliedFilters.state, appliedFilters.pin_code]);
 
   const fetchCustomers = async () => {
     try {
@@ -30,9 +31,9 @@ function CustomerList() {
       params.append('page', currentPage);
       params.append('limit', pagination.limit);
       
-      if (filters.city) params.append('city', filters.city);
-      if (filters.state) params.append('state', filters.state);
-      if (filters.pin_code) params.append('pin_code', filters.pin_code);
+      if (appliedFilters.city) params.append('city', appliedFilters.city);
+      if (appliedFilters.state) params.append('state', appliedFilters.state);
+      if (appliedFilters.pin_code) params.append('pin_code', appliedFilters.pin_code);
 
       const response = await fetch(`${API_URL}/customers?${params.toString()}`);
       const data = await response.json();
@@ -51,14 +52,19 @@ function CustomerList() {
     }
   };
 
-  const handleFilterChange = (e) => {
+  const handleFilterInputChange = (e) => {
     const { name, value } = e.target;
-    setFilters(prev => ({ ...prev, [name]: value }));
-    setCurrentPage(1); // Reset to first page when filter changes
+    setFilterInputs(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSearch = () => {
+    setAppliedFilters({ ...filterInputs });
+    setCurrentPage(1); // Reset to first page when searching
   };
 
   const clearFilters = () => {
-    setFilters({ city: '', state: '', pin_code: '' });
+    setFilterInputs({ city: '', state: '', pin_code: '' });
+    setAppliedFilters({ city: '', state: '', pin_code: '' });
     setCurrentPage(1);
   };
 
@@ -113,38 +119,44 @@ function CustomerList() {
 
   return (
     <div>
-      <div className="bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-lg mb-5">
-        <div className="mb-6">
-          <h2 className="text-slate-700 text-xl sm:text-2xl md:text-3xl font-bold mb-2">Search & Filter Customers</h2>
-          <p className="text-gray-500 text-sm sm:text-base">Find customers by city, state, or pin code</p>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+      <div className="bg-white p-5 rounded border border-gray-200 mb-5">
+        <h2 className="text-gray-900 text-lg font-semibold mb-4">Search & Filter Customers</h2>
+        <div className="flex flex-col sm:flex-row gap-3">
           <input
             type="text"
             name="city"
             placeholder="Search by City"
-            value={filters.city}
-            onChange={handleFilterChange}
-            className="flex-1 w-full sm:min-w-[200px] p-3 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            value={filterInputs.city}
+            onChange={handleFilterInputChange}
+            onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+            className="flex-1 p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-gray-500"
           />
           <input
             type="text"
             name="state"
             placeholder="Search by State"
-            value={filters.state}
-            onChange={handleFilterChange}
-            className="flex-1 w-full sm:min-w-[200px] p-3 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            value={filterInputs.state}
+            onChange={handleFilterInputChange}
+            onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+            className="flex-1 p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-gray-500"
           />
           <input
             type="text"
             name="pin_code"
             placeholder="Search by Pin Code"
-            value={filters.pin_code}
-            onChange={handleFilterChange}
-            className="flex-1 w-full sm:min-w-[200px] p-3 border border-gray-300 rounded-lg text-sm sm:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            value={filterInputs.pin_code}
+            onChange={handleFilterInputChange}
+            onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+            className="flex-1 p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-gray-500"
           />
           <button 
-            className="w-full sm:w-auto px-6 sm:px-8 py-3 border-none rounded-lg cursor-pointer text-sm sm:text-base transition-all bg-gray-400 text-white hover:bg-gray-500 font-semibold whitespace-nowrap shadow-md" 
+            className="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded hover:bg-gray-800 transition-colors whitespace-nowrap" 
+            onClick={handleSearch}
+          >
+            Search
+          </button>
+          <button 
+            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 transition-colors whitespace-nowrap" 
             onClick={clearFilters}
           >
             Clear Filters
@@ -152,13 +164,13 @@ function CustomerList() {
         </div>
       </div>
 
-      <div className="bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-lg mb-5">
-        <div className="mb-6">
-          <h2 className="text-slate-700 text-xl sm:text-2xl md:text-3xl font-bold mb-2">
+      <div className="bg-white p-5 rounded border border-gray-200 mb-5">
+        <div className="mb-4">
+          <h2 className="text-gray-900 text-lg font-semibold mb-1">
             Customer List
           </h2>
-          <p className="text-gray-500 text-sm sm:text-base">
-            Total: <span className="font-semibold text-blue-600">{pagination.totalCount}</span> customers
+          <p className="text-sm text-gray-600">
+            Total: {pagination.totalCount} customers
           </p>
         </div>
         {customers.length === 0 ? (
@@ -171,36 +183,31 @@ function CustomerList() {
           </div>
         ) : (
           <>
-            <div className="grid gap-4 sm:gap-5 mb-6">
+            <div className="space-y-3 mb-6">
               {customers.map(customer => (
-                <div key={customer.id} className="bg-gray-50 p-5 sm:p-6 rounded-lg shadow-sm border-l-4 border-blue-500 hover:shadow-md transition-shadow">
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+                <div key={customer.id} className="bg-white p-5 rounded border border-gray-200 hover:border-gray-300 transition-colors">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
                     <div className="flex-1">
-                      <h3 className="text-slate-700 mb-3 text-lg sm:text-xl font-bold">{customer.first_name} {customer.last_name}</h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                        <div>
-                          <p className="text-xs sm:text-sm text-gray-500 mb-0.5">Phone</p>
-                          <p className="text-sm sm:text-base font-medium text-gray-800">{customer.phone_number}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs sm:text-sm text-gray-500 mb-0.5">Location</p>
-                          <p className="text-sm sm:text-base font-medium text-gray-800">{customer.city}, {customer.state}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs sm:text-sm text-gray-500 mb-0.5">Pin Code</p>
-                          <p className="text-sm sm:text-base font-medium text-gray-800">{customer.pin_code}</p>
-                        </div>
+                      <h3 className="text-gray-900 mb-2 text-lg font-semibold">{customer.first_name} {customer.last_name}</h3>
+                      <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-gray-600">
+                        <span><strong>Phone:</strong> {customer.phone_number}</span>
+                        {customer.city && customer.state && (
+                          <span><strong>Location:</strong> {customer.city}, {customer.state}</span>
+                        )}
+                        {customer.pin_code && (
+                          <span><strong>Pin Code:</strong> {customer.pin_code}</span>
+                        )}
                       </div>
                     </div>
-                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-2.5 w-full sm:w-auto">
+                    <div className="flex gap-2">
                       <button
-                        className="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 border-none rounded-lg cursor-pointer text-sm sm:text-base transition-all bg-blue-500 text-white hover:bg-blue-600 font-medium shadow-sm"
+                        className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 transition-colors"
                         onClick={() => navigate(`/customers/${customer.id}`)}
                       >
                         View Details
                       </button>
                       <button
-                        className="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 border-none rounded-lg cursor-pointer text-sm sm:text-base transition-all bg-red-500 text-white hover:bg-red-600 font-medium shadow-sm"
+                        className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded hover:bg-red-700 transition-colors"
                         onClick={() => handleDelete(customer.id)}
                       >
                         Delete
